@@ -7,9 +7,7 @@ use App\Http\Controller\PhotoController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CustomersController;
 use App\Models\Customer;
-use App\Models\Customers;
-
-
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +45,10 @@ Route::get('/Customers/edit/{id}', [CustomersController::class, 'edit'])->name('
 
 Route::get('/Customers/delete/{id}', [CustomersController::class, 'destroy'])->name('Customer.delete');
 
+Route::get('/Customers/restore/{id}', [CustomersController::class, 'restore'])->name('Customer.restore');
+
+Route::get('/Customers/trash', [CustomersController::class, 'trash'])->name('Customer.trash');
+
 Route::get('/Customers/view', [CustomersController::class, 'view'])->name('Customer.view');
 
 Route::get('/Customers', function () {
@@ -54,4 +56,20 @@ Route::get('/Customers', function () {
     // $coustomers = Customer::all();
     // echo "<pre>";
     // print_r($coustomers);
+});
+
+Route::get('get-all-session', function () {
+    $session = session()->all();
+    p($session);
+});
+
+Route::get('set-session', function (Request $request) {
+    $request->session()->put('name', 'Add');
+    $request->session()->put('email', 'parthkaila@gmail.com');
+    $request->session()->flash('status', 'success');
+    return redirect('get-all-session');
+});
+Route::get('destroy-session', function (Request $request) {
+    session()->forget(['name', 'id']);
+    return redirect('get-all-session');
 });

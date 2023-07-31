@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CustomersController extends Controller
 {
@@ -34,14 +35,33 @@ class CustomersController extends Controller
         return view('layout.customer.customer', compact(['customers']));
     }
 
+    public function trash()
+    {
+        $customer = customer::onlyTrashed()->get();
+        $data = compact('customer');
+        return view('layout.customer.customer-trash')->with($data);
+    }
+
     public function delete($id)
     {
+
         $customers = customer::find($id);
 
         if (!is_null($customers)) {
             $customers->delete();
         }
         return redirect('/Customers/view');
+    }
+
+
+    public function restore($id)
+    {
+        $customer = customer::withTrashed()->find($id);
+
+        if (!is_null($customer)) {
+            $customer->restore();
+        }
+        return redirect('/Customers/view')->with('msg', 'restore susscesfully');
     }
 
     public function edit($id)
@@ -67,7 +87,7 @@ class CustomersController extends Controller
         $customers->password = $params['password'];
         // $customers->status = $params['status'];
         $customers->save();
-        return redirect('/Customers/view');
+        return redirect('/Customers/view')->with('msg', 'edited susscesfully');
     }
 
     public function store(Request $request)
@@ -85,14 +105,15 @@ class CustomersController extends Controller
             'password' => $request->password,
             'status' => 1
         ]);
-        return redirect('/Customers/view');
+        return redirect('/Customers/view')->with('msg', ' Created add susscesfully');
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $customers_id = $request->input('customer_id');
-        $customers = customer::find($customers_id);
+
+        $customers = customer::find($id);
         $customers->delete();
-        return redirect('/Customers/view');
+        // Session::put('msg', 'The Message');
+        return redirect('/Customers/view')->with('msg', ' data deleted susscesfully');
     }
 }

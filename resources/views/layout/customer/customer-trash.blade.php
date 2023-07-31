@@ -1,9 +1,6 @@
 @extends('layout.app')
 @section('content')
     <div class="container mt-5">
-        @if (session()->has('msg'))
-            <p class="alert alert-success"> {{ session()->get('msg') }}</p>
-        @endif
         <a href="{{ url('/Customers/index') }}"><button type="button" class="btn btn-primary fw-bold addbtn">Add</button></a>
         <a href="{{ url('/Customers/trash') }}"><button type="button" class="btn btn-primary fw-bold addbtn">Go to
                 trash</button></a>
@@ -24,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($customers as $customer)
+                @foreach ($customer as $customer)
                     <tr>
                         <td>{{ $customer->id }}</td>
                         <td>{{ $customer->name }}</td>
@@ -32,10 +29,11 @@
                         <td>{{ $customer->password }}</td>
                         <td>{{ $customer->gender }}</td>
                         {{-- @if ($customer->gender == '1')
-                            <td>male</td>
-                        @else
-                            <td>female</td>
-                        @endif --}}
+                        <td>male</td>
+                    @else
+                        <td>female</td>
+                    @endif --}}
+                        </td>
                         <td>{{ $customer->dob }}</td>
                         <td>{{ $customer->state }}</td>
                         <td>{{ $customer->country }}</td>
@@ -44,41 +42,18 @@
                         @else
                             <td>Inactive</td>
                         @endif
-
                         <td>
                             <a href="{{ route('Customer.delete', ['id' => $customer->id]) }}"><button
                                     class="btn btn-primary">Delete</button></a>
                         </td>
 
                         <td>
-                            <a href="{{ route('Customer.edit', ['id' => $customer->id]) }}"><button
-                                    class="btn btn-primary">Edit</button></a>
+                            <a href="{{ route('Customer.restore', ['id' => $customer->id]) }}"><button
+                                    class="btn btn-primary">Resport</button></a>
                         </td>
-
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 @endsection
-
-{{-- @section('scripts')
-    <script>
-        $(document).ready(function() {
-            $(document).on('click', '.addbtn', function() {
-                // var customer = $(this).val()
-                // alert(customer);
-                $('#addmodal').toggle(1000);
-            });
-            $(document).on('click', '.editbtn', function() {
-                $('#editmodal').toggle(1000);
-            });
-            $(document).on('click', '.Deletebtn', function() {
-                var customer = $(this).val()
-                $('#deletemodal').toggle(1000);
-                $('#id').val(customer);
-                $('#close1').hide();
-            });
-        });
-    </script> --}}
-{{-- @endsection --}}
