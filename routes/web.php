@@ -51,6 +51,7 @@ Route::get('/Customers/trash', [CustomersController::class, 'trash'])->name('Cus
 
 Route::get('/Customers/view', [CustomersController::class, 'view'])->name('Customer.view');
 
+
 Route::get('/Customers', function () {
 
     // $coustomers = Customer::all();

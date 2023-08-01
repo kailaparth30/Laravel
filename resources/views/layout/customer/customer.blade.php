@@ -47,7 +47,7 @@
 
                         <td>
                             <a href="{{ route('Customer.delete', ['id' => $customer->id]) }}"><button
-                                    class="btn btn-primary">Delete</button></a>
+                                    class="btn btn-primary delete">Delete</button></a>
                         </td>
 
                         <td>
@@ -60,25 +60,18 @@
             </tbody>
         </table>
     </div>
+
+    @section('scripts')
+
+ <script>
+    $(".delete").click(function(){
+        if(confirm("Are you sure you want to delete this?"));
+        else{
+            return false;
+        }
+    });
+</script> 
+
+@endsection
 @endsection
 
-{{-- @section('scripts')
-    <script>
-        $(document).ready(function() {
-            $(document).on('click', '.addbtn', function() {
-                // var customer = $(this).val()
-                // alert(customer);
-                $('#addmodal').toggle(1000);
-            });
-            $(document).on('click', '.editbtn', function() {
-                $('#editmodal').toggle(1000);
-            });
-            $(document).on('click', '.Deletebtn', function() {
-                var customer = $(this).val()
-                $('#deletemodal').toggle(1000);
-                $('#id').val(customer);
-                $('#close1').hide();
-            });
-        });
-    </script> --}}
-{{-- @endsection --}}

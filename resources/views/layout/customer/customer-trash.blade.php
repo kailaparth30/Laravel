@@ -49,11 +49,25 @@
 
                         <td>
                             <a href="{{ route('Customer.restore', ['id' => $customer->id]) }}"><button
-                                    class="btn btn-primary">Resport</button></a>
+                                    class="btn btn-primary restore ">restore</button></a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+    @section('scripts')
+
+ <script>
+    $(".restore").click(function(){
+        if(confirm("Are you sure you want to restore this?")){
+            $("#delete-button").attr("href", "Customer.edit");
+        }
+        else{
+            return false;
+        }
+    });
+</script> 
+
+@endsection
 @endsection
