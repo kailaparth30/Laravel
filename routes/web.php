@@ -8,6 +8,13 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CustomersController;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\ProtfolioController;
+use App\Http\Controllers\Contactcontroller;
+use App\Http\Controllers\HomeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +29,10 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('layout.customer.form');
+});
+
+Route::get('/upload', function () {
+    return view('layout1.home.upload');
 });
 
 
@@ -50,6 +61,18 @@ Route::get('/Customers/restore/{id}', [CustomersController::class, 'restore'])->
 Route::get('/Customers/trash', [CustomersController::class, 'trash'])->name('Customer.trash');
 
 Route::get('/Customers/view', [CustomersController::class, 'view'])->name('Customer.view');
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/layout/about', [AboutController::class, 'about'])->name('layout.about');
+
+Route::get('/layout/contact', [ContactController::class, 'contact'])->name('layout.contact');
+
+Route::get('/layout/Portfolio', [ProtfolioController::class, 'protfilio'])->name('layout.protfilio');
+
+Route::get('/layout/services', [ServicesController::class, 'services'])->name('layout.services');
+
+Route::post('/upload', [ContactController::class, 'upload']);
 
 
 Route::get('/Customers', function () {
