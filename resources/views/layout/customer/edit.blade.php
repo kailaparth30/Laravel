@@ -1,5 +1,6 @@
 @extends('layout.app')
 @section('content')
+ 
     <div class="container">
         @if (session()->has('msg'))
             <p class="alert alert-success"> {{ session()->get('msg') }}</p>
@@ -101,19 +102,23 @@
                     </span>
                 </div><br>
 
-                <button type="submit" class="  btn btn-light mb-5 fw-bold text-dark fs-3 border-dark msg" name="submit"
+                <button type="submit" data-toggle="modal" data-target="#edit-data" class="btn btn-light mb-5 fw-bold text-dark fs-3 border-dark msg" name="submit"
                     value="submit">Submit</button>
+
+                  
             </div>
         </form>
     </div>
 @section('scripts')
-    {{-- <script>
-        $(document).ready(function() {
-            $(document).on('click', '.msg', function() {
-                var customer = $(this).val()
-                alert(customer);
-            });
-        });
-    </script> --}}
+
+ <script>
+    $(".msg").click(function(){
+        if(confirm("Are you sure you want to edit this?"))
+        else{
+            return false;
+        }
+    });
+</script> 
+
 @endsection
 @endsection
