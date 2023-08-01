@@ -15,6 +15,7 @@
                     <th>Email</th>
                     <th>password</th>
                     <th>Gender</th>
+                    <th>image</th>
                     <th>DOB</th>
                     <th>state</th>
                     <th>country</th>
@@ -31,6 +32,7 @@
                         <td>{{ $customer->email }}</td>
                         <td>{{ $customer->password }}</td>
                         <td>{{ $customer->gender }}</td>
+                        <td><img src="{{$customer->image }}"></td>
                         {{-- @if ($customer->gender == '1')
                             <td>male</td>
                         @else

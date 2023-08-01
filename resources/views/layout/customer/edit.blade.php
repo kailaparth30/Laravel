@@ -113,12 +113,14 @@
 
  <script>
     $(".msg").click(function(){
-        if(confirm("Are you sure you want to edit this?"))
+        if(confirm("Are you sure you want to edit this?")){
+            $("#delete-button").attr("href", "Customer.edit?ACTION=delete&ID='1'");
+        }
         else{
             return false;
         }
     });
-</script> 
+    </script> 
 
 @endsection
 @endsection
