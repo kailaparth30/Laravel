@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Pagination\Paginator;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -29,10 +30,16 @@ class CustomersController extends Controller
         );
     }
 
-    public function view()
+    public function view(Request $request)
     {
-        $customers = Customer::all();
-        return view('layout.customer.customer', compact(['customers']));
+        $search = $request['search'] ?? "";
+        if ($search != "") {
+            $customers = customer::where('name', 'LIKE', "%$search%")->orwhere('email', 'LIKE', "%$search%")->get();
+        } else {
+            $customers = Customer::all();
+        }
+        $data = compact('customers', 'search');
+        return view('layout.customer.customer')->with($data);
     }
 
     public function trash()
@@ -115,5 +122,10 @@ class CustomersController extends Controller
         $customers->delete();
         // Session::put('msg', 'The Message');
         return redirect('/Customers/view')->with('msg', ' data deleted susscesfully');
+    }
+
+    public function reset()
+    {
+        return redirect(url('/Customers/view'));
     }
 }

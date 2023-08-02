@@ -16,8 +16,8 @@
                     <th>state</th>
                     <th>country</th>
                     <th>status</th>
-                    <th>Edit</th>
                     <th>Delete</th>
+                    <th>Restore</th>
                 </tr>
             </thead>
             <tbody>
