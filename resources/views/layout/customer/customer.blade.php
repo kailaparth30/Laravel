@@ -1,6 +1,17 @@
 @extends('layout.app')
 @section('content')
+
     <div class="container mt-5">
+        <form action="">
+            <div class="form-group">
+                <input type="search" name="search" class="form-control mb-4" id="" value="{{$search}}" placeholder="search" >          
+                {{-- <button class="btn btn-danger mb-2 mt-2 ">search</button>
+                <a href="{{url('/Customers/reset')}}">
+                <button class="btn btn-danger mb-2 mt-2 ">reset</button>
+                </a> --}}
+            </div>
+           
+        </form>
         @if (session()->has('msg'))
             <p class="alert alert-success"> {{ session()->get('msg') }}</p>
         @endif
@@ -15,14 +26,14 @@
                     <th>Email</th>
                     <th>password</th>
                     <th>Gender</th>
-                    <th>image</th>
                     <th>DOB</th>
                     <th>state</th>
                     <th>country</th>
                     <th>status</th>
-                    <th>Edit</th>
                     <th>Delete</th>
+                    <th>Edit</th>
                 </tr>
+
             </thead>
             <tbody>
                 @foreach ($customers as $customer)
@@ -32,7 +43,6 @@
                         <td>{{ $customer->email }}</td>
                         <td>{{ $customer->password }}</td>
                         <td>{{ $customer->gender }}</td>
-                        <td><img src="{{$customer->image }}"></td>
                         {{-- @if ($customer->gender == '1')
                             <td>male</td>
                         @else
@@ -61,7 +71,11 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="row">
+          {{-- {{$customers->links('pagination::bootstrap-4')}} --}}
+        </div>
     </div>
+   
 
     @section('scripts')
 

@@ -35,6 +35,26 @@ Route::get('/upload', function () {
     return view('layout1.home.upload');
 });
 
+Route::group(['prefix' => '/Customers'], function () {
+
+    Route::get('/index', [CustomersController::class, 'index']);
+
+    Route::post('/store', [CustomersController::class, 'store'])->name('Customers.store');
+
+    Route::get('/delete/{id}', [CustomersController::class, 'delete'])->name('Customers.delete');
+
+    Route::post('/Update', [CustomersController::class, 'Update'])->name('Customer.Update');
+
+    Route::get('/edit/{id}', [CustomersController::class, 'edit'])->name('Customer.edit');
+
+    Route::get('/delete/{id}', [CustomersController::class, 'destroy'])->name('Customer.delete');
+
+    Route::get('/restore/{id}', [CustomersController::class, 'restore'])->name('Customer.restore');
+
+    Route::get('/trash', [CustomersController::class, 'trash'])->name('Customer.trash');
+
+    Route::get('/view', [CustomersController::class, 'view'])->name('Customer.view');
+});
 
 // Route::get('/', [DemoController::class, 'index']);
 // Route::get('/home', 'DemoController@index');
