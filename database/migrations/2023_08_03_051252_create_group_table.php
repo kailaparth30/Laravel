@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('customers', function (Blueprint $table) {
-          $table->softDeletes();
-        }); 
+        Schema::create('group', function (Blueprint $table) {
+            $table->id('group_id');
+            $table->string('name', 255);
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('customers', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        Schema::dropIfExists('group');
     }
 };

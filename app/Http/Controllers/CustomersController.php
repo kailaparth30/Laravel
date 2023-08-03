@@ -32,14 +32,14 @@ class CustomersController extends Controller
 
     public function view(Request $request)
     {
-        $search = $request['search'] ?? "";
-        if ($search != "") {
-            $customers = customer::where('name', 'LIKE', "%$search%")->orwhere('email', 'LIKE', "%$search%")->get();
-        } else {
-            $customers = Customer::all();
-        }
-        $data = compact('customers', 'search');
-        return view('layout.customer.customer')->with($data);
+        // $search = $request['search'] ?? "";
+        // if ($search != "") {
+        //     $customers = customer::where('name', 'LIKE', "%$search%")->orwhere('email', 'LIKE', "%$search%")->get();
+        // } else {
+        //     $customers = Customer::paginate(5);
+        // }
+        // $data = compact('customers', 'search');
+        return view('layout.customer.customer');
     }
 
     public function trash()
@@ -117,7 +117,6 @@ class CustomersController extends Controller
 
     public function destroy($id)
     {
-
         $customers = customer::find($id);
         $customers->delete();
         // Session::put('msg', 'The Message');
