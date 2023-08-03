@@ -13,6 +13,8 @@ use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\ProtfolioController;
 use App\Http\Controllers\Contactcontroller;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndexController;
+
 
 
 
@@ -54,6 +56,8 @@ Route::group(['prefix' => '/Customers'], function () {
     Route::get('/trash', [CustomersController::class, 'trash'])->name('Customer.trash');
 
     Route::get('/view', [CustomersController::class, 'view'])->name('Customer.view');
+
+    Route::get('/data', [IndexController::class, 'index']);
 });
 
 // Route::get('/', [DemoController::class, 'index']);
@@ -92,8 +96,11 @@ Route::get('/layout/Portfolio', [ProtfolioController::class, 'protfilio'])->name
 
 Route::get('/layout/services', [ServicesController::class, 'services'])->name('layout.services');
 
-Route::post('/upload', [ContactController::class, 'upload']);
+Route::get('/data', [IndexController::class, 'index']);
 
+Route::get('/group', [IndexController::class, 'group']);
+
+Route::post('/upload', [ContactController::class, 'upload']);
 
 Route::get('/Customers', function () {
 
@@ -113,6 +120,7 @@ Route::get('set-session', function (Request $request) {
     $request->session()->flash('status', 'success');
     return redirect('get-all-session');
 });
+
 Route::get('destroy-session', function (Request $request) {
     session()->forget(['name', 'id']);
     return redirect('get-all-session');
