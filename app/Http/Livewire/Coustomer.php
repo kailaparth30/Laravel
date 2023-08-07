@@ -12,7 +12,7 @@ class Coustomer extends Component
 
     public $search;
 
-    public $parPage = 5;
+    public $parPage = 10;
 
     protected $paginationTheme = 'bootstrap';
 

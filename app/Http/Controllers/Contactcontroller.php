@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
+
 use Illuminate\Http\Request;
 
-class Contactcontroller extends Controller
+class ContactController extends Controller
 {
     public function contact()
     {
         return view('layout1.home.contact');
+        
     }
 
     public function upload(Request $request)
