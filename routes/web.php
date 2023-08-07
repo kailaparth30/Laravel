@@ -14,6 +14,7 @@ use App\Http\Controllers\ProtfolioController;
 use App\Http\Controllers\Contactcontroller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoginController;
 
 
 
@@ -92,6 +93,16 @@ Route::get('/layout/about', [AboutController::class, 'about'])->name('layout.abo
 
 Route::get('/layout/contact', [ContactController::class, 'contact'])->name('layout.contact');
 
+Route::get('layout1/home/contact', [ContactController::class, 'contact'])->name('layout1.contact');
+
+Route::get('layout1/home/login', [LoginController::class, 'login']);
+
+Route::post('loginprocess', [LoginController::class, 'loginprocess']);
+
+Route::get('layout1/home/register', [RegisterController::class, 'Register']);
+
+Route::post('registerdata', [RegisterController::class, 'registerdata']);
+
 Route::get('/layout/Portfolio', [ProtfolioController::class, 'protfilio'])->name('layout.protfilio');
 
 Route::get('/layout/services', [ServicesController::class, 'services'])->name('layout.services');
@@ -101,6 +112,8 @@ Route::get('/data', [IndexController::class, 'index']);
 Route::get('/group', [IndexController::class, 'group']);
 
 Route::post('/upload', [ContactController::class, 'upload']);
+
+
 
 Route::get('/Customers', function () {
 

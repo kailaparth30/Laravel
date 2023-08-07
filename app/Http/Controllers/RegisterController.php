@@ -11,23 +11,19 @@ class RegisterController extends Controller
         return view('layout.form');
     }
 
-    public function Register(Request $request)
+    public function Register()
     {
 
+        return view('layout1/home/register');
+    }
+
+    public function registerdata(Request $request)
+    {
         $request->validate(
             [
-                'name' => 'required',
                 'email' => 'required|email',
                 'password' => 'required ',
-                'address' => 'required ',
-                'state' => 'required ',
-                'country' => 'required ',
-                'gander' => 'required', 'in:male,female,',
-                'password_confir' => 'required|same:password',
             ]
         );
-
-        echo "<pre>";
-        print_r($request->all());
     }
 }
