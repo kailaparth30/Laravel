@@ -25,7 +25,7 @@
     @include('layout1.header')
     @yield('content')
     @include('layout1.footer')
-
+    @yield('scripts')
 </body>
 
 </html>

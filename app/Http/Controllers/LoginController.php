@@ -14,8 +14,14 @@ class LoginController extends Controller
         return view('layout1.home.Login');
     }
 
-    public function loginprocess()
+    public function loginprocess(Request $request)
     {
-        
+        login::create([
+
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        return redirect('/')->with('msg', ' Created add susscesfully');
     }
 }

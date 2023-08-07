@@ -32,6 +32,7 @@ class CustomersController extends Controller
 
     public function view(Request $request)
     {
+
         // $search = $request['search'] ?? "";
         // if ($search != "") {
         //     $customers = customer::where('name', 'LIKE', "%$search%")->orwhere('email', 'LIKE', "%$search%")->get();
@@ -39,6 +40,7 @@ class CustomersController extends Controller
         //     $customers = Customer::paginate(5);
         // }
         // $data = compact('customers', 'search');
+
         return view('layout.customer.customer');
     }
 
@@ -92,7 +94,7 @@ class CustomersController extends Controller
         $customers->country = $params['country'];
         $customers->dob = $params['dob'];
         $customers->password = $params['password'];
-        // $customers->status = $params['status'];
+        $customers->status = $params['status'];
         $customers->save();
         return redirect('/Customers/view')->with('msg', 'edited susscesfully');
     }
@@ -104,13 +106,14 @@ class CustomersController extends Controller
 
             'name' => $request->name,
             'email' => $request->email,
+            'password' => $request->password,
             'gender' => $request->gender,
+            'status' => $request->status,
             'address' => $request->address,
             'state' => $request->state,
             'country' => $request->country,
             'dob' => $request->dob,
-            'password' => $request->password,
-            'status' => 1
+
         ]);
         return redirect('/Customers/view')->with('msg', ' Created add susscesfully');
     }

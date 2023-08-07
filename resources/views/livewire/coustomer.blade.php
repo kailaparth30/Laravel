@@ -1,8 +1,8 @@
 <div class="container mt-5">
     <form action="">
         <div class="form-group">
-            <input type="search" wire:model="search" class="form-control mb-4" id="" value="{{$search}}"
-                placeholder="search">
+            {{-- <input type="search" wire:model="search" class="form-control mb-4" id="" value="{{$search}}"
+                placeholder="search"> --}}
             {{-- <button class="btn btn-danger mb-2 mt-2 ">search</button>
             <a href="{{url('/Customers/reset')}}">
                 <button class="btn btn-danger mb-2 mt-2 ">reset</button>
@@ -14,10 +14,10 @@
     <p class="alert alert-success"> {{ session()->get('msg') }}</p>
     @endif
     <a href="{{ url('/Customers/index') }}"><button type="button"
-            class="btn btn-primary fw-bold addbtn">Add</button></a>
-    <a href="{{ url('/Customers/trash') }}"><button type="button" class="btn btn-primary fw-bold addbtn">Go to
+            class="btn btn-primary fw-bold addbtn mb-4">Add</button></a>
+    <a href="{{ url('/Customers/trash') }}"><button type="button" class="btn btn-primary fw-bold addbtn mb-4">Go to
             trash</button></a>
-    <table class="table ">
+    <table class="table" id="tableid">
         <thead>
             <tr>
                 <th>id</th>
@@ -70,7 +70,16 @@
             @endforeach
         </tbody>
     </table>
-    <div class="row">
+    {{-- <div class="row">
         {{$customers->links()}}
-    </div>
+    </div> --}}
+    @section('scripts')
+
+    <script>
+        $(document).ready(function() {
+            $('#tableid').DataTable({ });
+        });
+    </script>
+
+    @endsection
 </div>
