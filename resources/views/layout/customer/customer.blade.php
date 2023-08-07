@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
 
-@livewire('coustomer')
+@livewire('coustomer');
 
 @section('scripts')
 

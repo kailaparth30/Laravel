@@ -13,7 +13,7 @@
         <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
             <div class="col-lg-6">
                 @csrf
-                <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="{{ route('layout1.contact') }}">
+                <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="{{ url('/layout/contact') }}">
                     <!-- Name input-->
                     <div class="form-floating mb-3">
                         <input class="form-control" id="name" type="text" placeholder="Enter your name..."
@@ -35,8 +35,8 @@
                     <div class="form-floating mb-3">
                         <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890"
                             data-sb-validations="required" value="{{ old('phonenumber')}}" name="phonenumber	">
-                        <label for="phone">Phone number</label>
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.
+                        <label for="phone">Phonenumber</label>
+                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phonenumber is required.
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@
                         <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..."
                             value="{{ old('message')}} " name="message" style="height: 10rem"
                             data-sb-validations="required"></textarea>
-                        <label for="message">Message</label>
+                        <label for="message">message</label>
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.
                         </div>
                     </div>

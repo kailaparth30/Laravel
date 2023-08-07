@@ -38,28 +38,6 @@ Route::get('/upload', function () {
     return view('layout1.home.upload');
 });
 
-Route::group(['prefix' => '/Customers'], function () {
-
-    Route::get('/index', [CustomersController::class, 'index']);
-
-    Route::post('/store', [CustomersController::class, 'store'])->name('Customers.store');
-
-    Route::get('/delete/{id}', [CustomersController::class, 'delete'])->name('Customers.delete');
-
-    Route::post('/Update', [CustomersController::class, 'Update'])->name('Customer.Update');
-
-    Route::get('/edit/{id}', [CustomersController::class, 'edit'])->name('Customer.edit');
-
-    Route::get('/delete/{id}', [CustomersController::class, 'destroy'])->name('Customer.delete');
-
-    Route::get('/restore/{id}', [CustomersController::class, 'restore'])->name('Customer.restore');
-
-    Route::get('/trash', [CustomersController::class, 'trash'])->name('Customer.trash');
-
-    Route::get('/view', [CustomersController::class, 'view'])->name('Customer.view');
-
-    Route::get('/data', [IndexController::class, 'index']);
-});
 
 // Route::get('/', [DemoController::class, 'index']);
 // Route::get('/home', 'DemoController@index');
@@ -69,39 +47,40 @@ Route::group(['prefix' => '/Customers'], function () {
 // Route::get('/userregister', [RegisterController::class, 'index']);
 // Route::post('/userregister', [RegisterController::class, 'Register']);
 
-Route::get('/Customers/index', [CustomersController::class, 'index']);
+Route::get('/Customers/index',[CustomersController::class, 'index']);
 
-Route::post('/Customers/store', [CustomersController::class, 'store'])->name('Customers.store');
+Route::post('/contactdata',[ContactController::class, 'contactdata']);
 
-Route::get('/Customers/delete/{id}', [CustomersController::class, 'delete'])->name('Customers.delete');
+Route::get('/layout/contact',[ContactController::class, 'contact'])->name('layout1.contact');
 
-Route::post('/Customers/Update', [CustomersController::class, 'Update'])->name('Customer.Update');
+Route::post('/Customers/store',[CustomersController::class, 'store'])->name('Customers.store');
 
-Route::get('/Customers/edit/{id}', [CustomersController::class, 'edit'])->name('Customer.edit');
+Route::get('/layout1/home/register',[RegisterController::class, 'Register']);
 
-Route::get('/Customers/delete/{id}', [CustomersController::class, 'destroy'])->name('Customer.delete');
+Route::post('/registerdatastore',[RegisterController::class, 'registerdatastore']);
 
-Route::get('/Customers/restore/{id}', [CustomersController::class, 'restore'])->name('Customer.restore');
+Route::get('layout1/home/login',[LoginController::class, 'login']);
 
-Route::get('/Customers/trash', [CustomersController::class, 'trash'])->name('Customer.trash');
+Route::post('/login/loginprocess',[LoginController::class, 'loginprocess'])->name('login.loginprocess');
 
-Route::get('/Customers/view', [CustomersController::class, 'view'])->name('Customer.view');
+Route::get('/Customers/delete/{id}',[CustomersController::class, 'delete'])->name('Customers.delete');
 
-Route::get('/', [HomeController::class, 'index']);
+Route::post('/Customers/Update',[CustomersController::class, 'Update'])->name('Customer.Update');
 
-Route::get('/layout/about', [AboutController::class, 'about'])->name('layout.about');
+Route::get('/Customers/edit/{id}',[CustomersController::class, 'edit'])->name('Customer.edit');
 
-Route::get('/layout/contact', [ContactController::class, 'contact'])->name('layout.contact');
+Route::get('/Customers/delete/{id}',[CustomersController::class, 'destroy'])->name('Customer.delete');
 
-Route::get('layout1/home/contact', [ContactController::class, 'contact'])->name('layout1.contact');
+Route::get('/Customers/restore/{id}',[CustomersController::class, 'restore'])->name('Customer.restore');
 
-Route::get('layout1/home/login', [LoginController::class, 'login']);
+Route::get('/Customers/trash',[CustomersController::class, 'trash'])->name('Customer.trash');
 
-Route::post('loginprocess', [LoginController::class, 'loginprocess']);
+Route::get('/Customers/view',[CustomersController::class, 'view'])->name('Customer.view');
 
-Route::get('layout1/home/register', [RegisterController::class, 'Register']);
+Route::get('/',[HomeController::class, 'index']);
 
-Route::post('registerdata', [RegisterController::class, 'registerdata']);
+Route::get('/layout/about',[AboutController::class, 'about'])->name('layout.about');
+
 
 Route::get('/layout/Portfolio', [ProtfolioController::class, 'protfilio'])->name('layout.protfilio');
 

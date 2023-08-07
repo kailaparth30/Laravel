@@ -3,7 +3,7 @@
 
 <body>
     <div class="container">
-        <form action="{{ url('registerdata') }}" method="post">
+        <form action="{{ url('registerdatastore') }}" method="post">
             @csrf
             <h4 class="text-center fw-bold fs-3 bg-primary rounded p-2 ">Register</h4>
             <div class="model-body">
