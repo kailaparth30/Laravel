@@ -22,6 +22,8 @@ class LoginController extends Controller
             'password' => $request->password,
         ]);
 
-        return redirect('/')->with('msg', ' Created add susscesfully');
+        return redirect('/')->with('msg', 'Created add susscesfully');
     }
+
+    
 }
