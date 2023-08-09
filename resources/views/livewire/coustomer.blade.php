@@ -7,7 +7,7 @@
             <a href="{{url('/Customers/reset')}}">
                 <button class="btn btn-danger mb-2 mt-2 ">reset</button>
             </a> --}}
-        </div>
+        </div> 
 
     </form>
     @if (session()->has('msg'))
@@ -77,7 +77,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#tableid').DataTable({ });
+            $('#tableid').DataTable()
         });
     </script>
 

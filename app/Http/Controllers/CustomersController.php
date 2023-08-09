@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Pagination\Paginator;
 use App\Models\Customer;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -13,6 +14,8 @@ class CustomersController extends Controller
     {
         return view('layout.Customer.form');
     }
+
+
 
     public function Customer(Request $request)
     {
@@ -129,5 +132,25 @@ class CustomersController extends Controller
     public function reset()
     {
         return redirect(url('/Customers/view'));
+    }
+
+    public function dataget(Request $request)
+    {
+        // return Customer::all();
+        $params = $request->all();
+        return customer::find($params['id']);
+    }
+
+    public function createded(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'content' => 'required|string',
+        ]);
+
+        return response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors'
+        ]);
     }
 }
