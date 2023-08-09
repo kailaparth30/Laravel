@@ -23,5 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/dataget',[CustomersController::class,'dataget']);
-Route::post('/createded',[CustomersController::class,'createded']);
+Route::get('/dataget', [CustomersController::class, 'dataget']);
+Route::post('/postdata', [CustomersController::class, 'postdata']);
+// Route::DELETE('deletedata', [CustomersController::class, 'deletedata']);

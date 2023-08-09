@@ -8,6 +8,7 @@ use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+
 class CustomersController extends Controller
 {
     public function index()
@@ -99,6 +100,7 @@ class CustomersController extends Controller
         $customers->password = $params['password'];
         $customers->status = $params['status'];
         $customers->save();
+
         return redirect('/Customers/view')->with('msg', 'edited susscesfully');
     }
 
@@ -118,7 +120,8 @@ class CustomersController extends Controller
             'dob' => $request->dob,
 
         ]);
-        return redirect('/Customers/view')->with('msg', ' Created add susscesfully');
+        return response()->json($request);
+        // return redirect('/Customers/view')->with('msg', ' Created add susscesfully');
     }
 
     public function destroy($id)
@@ -134,6 +137,7 @@ class CustomersController extends Controller
         return redirect(url('/Customers/view'));
     }
 
+    // getapi id
     public function dataget(Request $request)
     {
         // return Customer::all();
@@ -141,16 +145,28 @@ class CustomersController extends Controller
         return customer::find($params['id']);
     }
 
-    public function createded(Request $request)
+    //post api
+    public function postdata(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string',
-            'content' => 'required|string',
-        ]);
 
-        return response()->json([
-            'success'   => false,
-            'message'   => 'Validation errors'
+        Customer::create([
+
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'gender' => $request->gender,
+            'status' => $request->status,
+            'address' => $request->address,
+            'state' => $request->state,
+            'country' => $request->country,
+            'dob' => $request->dob,
+
         ]);
+        return response()->json($request);
+        if ($request == !null) {
+            return response()->json($request);
+        } else {
+            return response()->json('msg', ' Created add susscesfully');
+        }
     }
 }
