@@ -16,6 +16,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SmsController;
+use App\Http\Controllers\MailController;
 
 
 
@@ -58,6 +59,8 @@ Route::post('/contactdata', [ContactController::class, 'contactdata']);
 Route::get('/layout1/home/sms', [SmsController::class, 'smsmessage']);
 
 Route::post('/message', [SmsController::class, 'sendsms']);
+
+Route::get('/layout1/home/demoemail', [MailController::class, 'sendmail']);
 
 Route::get('/layout/contact', [ContactController::class, 'contact'])->name('layout1.contact');
 
