@@ -15,6 +15,7 @@ use App\Http\Controllers\Contactcontroller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SmsController;
 
 
 
@@ -34,6 +35,8 @@ Route::get('/', function () {
     return view('layout.customer.form');
 });
 
+
+
 Route::get('/upload', function () {
     return view('layout1.home.upload');
 });
@@ -47,9 +50,14 @@ Route::get('/upload', function () {
 // Route::get('/userregister', [RegisterController::class, 'index']);
 // Route::post('/userregister', [RegisterController::class, 'Register']);
 
+
 Route::get('/Customers/index', [CustomersController::class, 'index']);
 
 Route::post('/contactdata', [ContactController::class, 'contactdata']);
+
+Route::get('/layout1/home/sms', [SmsController::class, 'smsmessage']);
+
+Route::post('/message', [SmsController::class, 'sendsms']);
 
 Route::get('/layout/contact', [ContactController::class, 'contact'])->name('layout1.contact');
 
